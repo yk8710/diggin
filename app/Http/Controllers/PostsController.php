@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\returnSelf;
+
 class PostsController extends Controller
 {
     /**
@@ -39,7 +41,24 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'artist_name' => 'required',
+            'track_name' => 'required',
+            'album_name' => 'required',
+            'label' => 'required',
+            'year' => 'required',
+            'content' => 'required'
+        ]);
+        $post = new Post();
+        $post->artist_name = $request->artist_name;
+        $post->track_name = $request->track_name;
+        $post->album_name = $request->album_name;
+        $post->label = $request->label;
+        $post->year = $request->year;
+        $post->content = $request->content;
+        $post->save();
+
+        return redirect(route('posts.index'));
     }
 
     /**
