@@ -81,7 +81,8 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $data = ['post' => $post];
+        return view('posts.edit', $data);
     }
 
     /**
@@ -93,7 +94,22 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->validate($request, [
+            'artist_name' => 'required',
+            'track_name' => 'required',
+            'album_name' => 'required',
+            'label' => 'required',
+            'year' => 'required',
+            'content' => 'required'
+        ]);
+        $post->artist_name = $request->artist_name;
+        $post->track_name = $request->track_name;
+        $post->album_name = $request->album_name;
+        $post->label = $request->label;
+        $post->year = $request->year;
+        $post->content = $request->content;
+        $post->save();
+        return redirect(route('posts.show', $post));
     }
 
     /**
