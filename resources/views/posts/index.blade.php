@@ -18,7 +18,7 @@
             <div class="posts-album-name">{{ $post->album_name }}</div>
             <div class="posts-label">{{ $post->label }}</div>
             <div class="posts-year">{{ $post->year }}</div>
-            <div class="posts-text">{{ $post->text }}</div>
+            <div class="posts-content">{{ $post->content }}</div>
             @endforeach
         </div>
     </main>

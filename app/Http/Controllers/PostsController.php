@@ -26,7 +26,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        $post = new Post();
+        $data = ['post' => $post];
+        return view('posts.create', $data);
     }
 
     /**
