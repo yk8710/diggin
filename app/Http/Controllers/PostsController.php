@@ -50,6 +50,7 @@ class PostsController extends Controller
             'content' => 'required'
         ]);
         $post = new Post();
+        $post->user_id = \Auth::id();
         $post->artist_name = $request->artist_name;
         $post->track_name = $request->track_name;
         $post->album_name = $request->album_name;
@@ -81,6 +82,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize(($post));
         $data = ['post' => $post];
         return view('posts.edit', $data);
     }
@@ -94,6 +96,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize($post);
         $this->validate($request, [
             'artist_name' => 'required',
             'track_name' => 'required',
@@ -120,6 +123,7 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize($post);
         $post->delete();
         return redirect(route('posts.index'));
     }

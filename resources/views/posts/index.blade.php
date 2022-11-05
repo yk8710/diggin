@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<p><a href="{{ route('posts.create') }}">曲を投稿する</a></p>
+<h1 class="page-heading">記事検索</h1>
+{{-- <p><a href="{{ route('posts.create') }}">曲を投稿する</a></p>
 @foreach ($posts as $post)
 <div class="post-item">
     <div class="post-title">
@@ -10,5 +11,6 @@
         </a>
     </div>
 </div>
-@endforeach
-@endsection
+@endforeach --}}
+@include('posts.posts')
+@endsection()
