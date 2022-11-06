@@ -47,18 +47,18 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function bookmarks()
-    {
-        return $this->hasMany(Bookmark::class);
-    }
+//     public function bookmarks()
+//     {
+//         return $this->hasMany(Bookmark::class);
+//     }
 
-    public function bookmark_posts()
-    {
-        return $this->belongsToMany(Post::class, 'bookmarks', 'user_id', 'post_id');
-    }
+//     public function bookmark_posts()
+//     {
+//         return $this->belongsToMany(Post::class, 'bookmarks', 'user_id', 'post_id');
+//     }
 
-    public function is_bookmark($postId)
-    {
-        return $this->bookmarks()->where('post_id', $postId)->exists();
-    }
+//     public function is_bookmark($postId)
+//     {
+//         return $this->bookmarks()->where('post_id', $postId)->exists();
+//     }
 }

@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\BookmarkController;
-use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -20,10 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::resource('/posts', PostsController::class);
-    Route::post('/posts/{post}/bookmark', [BookmarkController::class, 'store'])->name('bookmark.store');
-    Route::delete('/posts/{post}/unbookmark', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
-    Route::get('/bookmarks', [PostsController::class, 'bookmark_posts'])->name('bookmarks');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::resource('/posts', PostsController::class);
 });

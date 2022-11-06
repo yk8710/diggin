@@ -128,12 +128,4 @@ class PostsController extends Controller
         return redirect(route('posts.index'));
     }
 
-    public function bookmark_posts()
-    {
-        $posts = \Auth::user()->bookmark_posts()->orderBy('created_at', 'desc')->paginate(10);
-        $data = [
-            'posts' => $posts,
-        ];
-        return view('posts.bookmarks', $data);
-    }
 }
